@@ -4,9 +4,10 @@ version of Ubuntu). You may also optionally pick the specific hardware type for
 all the nodes in the lan. 
 
 Instructions:
-Wait for the experiment to start, and then log into one or more of the nodes
-by clicking on them in the toplogy, and choosing the `shell` menu option.
-Use `sudo` to run root commands. 
+[Documentation](https://leaf.cmu.edu/build/html/index.html) for LEAF.
+Leaf has been installed in ```/opt``` directory.
+To run leaf, run ```sudo /opt/leaf/paper_experiments/femnist.sh /opt```
+This will run leaf and place the results in the /opt directory.
 """
 
 # Import the Portal object.
@@ -15,6 +16,10 @@ import geni.portal as portal
 import geni.rspec.pg as pg
 # Emulab specific extensions.
 import geni.rspec.emulab as emulab
+
+# Globals
+class GLOBALS(object):
+    LEAF_INSTALL_SCRIPT = "/usr/bin/sudo /local/repository/bin/leaf_install.sh"
 
 # Create a portal context, needed to defined parameters
 pc = portal.Context()
@@ -126,6 +131,7 @@ for i in range(numClients + 1):
         bs = node.Blockstore(name + "-bs", params.tempFileSystemMount)
         bs.size = "0GB"
         bs.placement = "any"
+    node.addService(rspec.Execute(shell="bash", command=GLOBALS.LEAF_INSTALL_SCRIPT))
         
     # Optional Blockstore
     # if params.tempFileSystemSize > 0 or params.tempFileSystemMax:
@@ -137,6 +143,11 @@ for i in range(numClients + 1):
     #         pass
     #     bs.placement = "any"
     #     pass
+
+tour = IG.Tour()
+tour.Description(IG.Tour.MARKDOWN, tourDescription)
+tour.Instructions(IG.Tour.MARKDOWN, tourInstructions)
+request.addTour(tour)
 
 # Print the RSpec to the enclosing page.
 pc.printRequestRSpec(request)
