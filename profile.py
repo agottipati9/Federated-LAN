@@ -131,7 +131,7 @@ for i in range(numClients + 1):
         bs = node.Blockstore(name + "-bs", params.tempFileSystemMount)
         bs.size = "0GB"
         bs.placement = "any"
-    node.addService(rspec.Execute(shell="bash", command=GLOBALS.LEAF_INSTALL_SCRIPT))
+    node.addService(pg.Execute(shell="bash", command=GLOBALS.LEAF_INSTALL_SCRIPT))
         
     # Optional Blockstore
     # if params.tempFileSystemSize > 0 or params.tempFileSystemMax:
