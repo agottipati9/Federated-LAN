@@ -1,15 +1,3 @@
-"""A single server node with a variable number of client nodes in a lan. You have the option of picking from one
-of three Ubuntu standard images we provide, or just use the default (typically a recent
-version of Ubuntu). You may also optionally pick the specific hardware type for
-all the nodes in the lan. 
-
-Instructions:
-[Documentation](https://leaf.cmu.edu/build/html/index.html) for LEAF.
-Leaf has been installed in ```/opt``` directory.
-To run leaf, run ```sudo /opt/leaf/paper_experiments/femnist.sh /opt```
-This will run leaf and place the results in the /opt directory.
-"""
-
 # Import the Portal object.
 import geni.portal as portal
 # Import the ProtoGENI library.
@@ -18,6 +6,20 @@ import geni.rspec.pg as pg
 import geni.rspec.emulab as emulab
 # Markdown
 import geni.rspec.igext as IG
+
+tourDescription = """
+A single server node with a variable number of client nodes in a lan. You have the option of picking from one
+of three Ubuntu standard images we provide, or just use the default (typically a recent
+version of Ubuntu). You may also optionally pick the specific hardware type for
+all the nodes in the lan. 
+"""
+tourInstructions = """
+Instructions:
+[Documentation](https://leaf.cmu.edu/build/html/index.html) for LEAF.
+Leaf has been installed in ```/opt``` directory.
+To run leaf, run ```sudo /opt/leaf/paper_experiments/femnist.sh /opt```
+This will run leaf and place the results in the /opt directory.
+"""
 
 # Globals
 class GLOBALS(object):
