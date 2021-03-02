@@ -16,6 +16,8 @@ import geni.portal as portal
 import geni.rspec.pg as pg
 # Emulab specific extensions.
 import geni.rspec.emulab as emulab
+# Markdown
+import geni.rspec.igext as IG
 
 # Globals
 class GLOBALS(object):
