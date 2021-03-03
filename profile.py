@@ -25,7 +25,7 @@ This will run LEAF's sample end-to-end experiment and place the results in the `
 
 # Globals
 class GLOBALS(object):
-    LEAF_INSTALL_SCRIPT = "/usr/bin/sudo /local/repository/bin/leaf_install.sh"
+    LEAF_INSTALL_SCRIPT = "/usr/bin/sudo chmod +x /local/repository/bin/leaf_install.sh && /usr/bin/sudo /local/repository/bin/leaf_install.sh"
 
 # Create a portal context, needed to defined parameters
 pc = portal.Context()
