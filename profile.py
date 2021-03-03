@@ -17,7 +17,8 @@ tourInstructions = """
 **NOTE:** Ensure the ***Startup*** column has a status of ```Finished``` prior to using the compute nodes.
 Find the LEAF documentation [here](https://leaf.cmu.edu/build/html/index.html).
 LEAF has been installed in ```/opt``` directory.
-To run leaf, run:
+To run leaf, first edit the sample LEAF script and replace all ```python``` instances with ```python3```
+Now run:
 
     cd /opt/leaf/paper_experiments/ && sudo ./femnist.sh [output directory]
 
