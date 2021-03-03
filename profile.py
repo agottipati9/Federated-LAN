@@ -19,9 +19,17 @@ Find the LEAF documentation [here](https://leaf.cmu.edu/build/html/index.html).
 LEAF has been installed in ```/opt``` directory.
 To run leaf, run:
 
-    cd /opt/leaf/paper_experiments/ && ./femnist.sh [output directory]
+    cd /opt/leaf/paper_experiments/ && sudo ./femnist.sh [output directory]
 
 This will run LEAF's sample end-to-end experiment and place the results in the ```[output directory]```.
+
+**NOTE:** The datasets are quite large and you may run out of space in the root file system. To avoid this, 
+if using a filemount, specify the filemount as the output directory. For example, from the ```paper_experiments```
+directory run:
+
+    sudo ./femnist.sh /mydata
+
+
 """
 
 # Globals
@@ -79,7 +87,7 @@ pc.defineParameter("useVMs",  "Use VMs",
                    
 # # Instead of a size, ask for all available space. 
 pc.defineParameter("tempFileSystemMax",  "Temp Filesystem Max Space",
-                    portal.ParameterType.BOOLEAN, False,
+                    portal.ParameterType.BOOLEAN, True,
                     advanced=True,
                     longDescription="Instead of specifying a size for your temporary filesystem, " +
                     "check this box to allocate all available disk space. Leave the tempFileSystemSize above as zero (currently not included).")
