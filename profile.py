@@ -14,7 +14,7 @@ or just use the default (Ubuntu 18.04). You may also optionally pick the specifi
 in the lan. 
 """
 tourInstructions = """
-**NOTE:** Ensure the ***Startup*** column has a status of ```Finished```.
+**NOTE:** Ensure the ***Startup*** column has a status of ```Finished``` prior to using the compute nodes.
 Find the LEAF documentation [here](https://leaf.cmu.edu/build/html/index.html).
 LEAF has been installed in ```/opt``` directory.
 To run leaf, run:
