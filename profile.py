@@ -8,17 +8,19 @@ import geni.rspec.emulab as emulab
 import geni.rspec.igext as IG
 
 tourDescription = """
-A single server node with a variable number of client nodes in a lan. You have the option of picking from one
-of three Ubuntu standard images we provide, or just use the default (typically a recent
-version of Ubuntu). You may also optionally pick the specific hardware type for
-all the nodes in the lan. 
+A simple Federated setup with a single server node and a variable number of client nodes connected in a lan.
+This profile utilizes CMU's LEAF framework. You have the option of choosing between two Ubuntu standard images,
+or just use the default (Ubuntu 18.04). You may also optionally pick the specific hardware type for all the nodes
+in the lan. 
 """
 tourInstructions = """
-Instructions:
-[Documentation](https://leaf.cmu.edu/build/html/index.html) for LEAF.
-Leaf has been installed in ```/opt``` directory.
-To run leaf, run ```sudo /opt/leaf/paper_experiments/femnist.sh /opt```
-This will run leaf and place the results in the /opt directory.
+Find the LEAF documentation [here](https://leaf.cmu.edu/build/html/index.html).
+LEAF has been installed in ```/opt``` directory.
+To run leaf, run:
+
+    cd /opt/leaf/paper_experiments/ && ./femnist.sh [output directory]
+
+This will run LEAF's sample end-to-end experiment and place the results in the ```[output directory]```.
 """
 
 # Globals
@@ -39,7 +41,6 @@ pc.defineParameter("nodeCount", "Number of Clients", portal.ParameterType.INTEGE
 # Pick your OS.
 imageList = [
     ('urn:publicid:IDN+emulab.net+image+emulab-ops//UBUNTU18-64-STD', 'UBUNTU 18.04'),
-    ('urn:publicid:IDN+emulab.net+image+emulab-ops//UBUNTU20-64-STD', 'UBUNTU 20.04'),
     ('urn:publicid:IDN+emulab.net+image+emulab-ops//UBUNTU16-64-STD', 'UBUNTU 16.04')]
 
 pc.defineParameter("osImage", "Select OS image",
