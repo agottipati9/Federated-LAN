@@ -17,18 +17,16 @@ tourInstructions = """
 **NOTE:** Ensure the ***Startup*** column has a status of ```Finished``` prior to using the compute nodes.
 Find the LEAF documentation [here](https://leaf.cmu.edu/build/html/index.html).
 LEAF has been installed in ```/opt``` directory.
-To run LEAF, first edit the sample LEAF script (e.g. ```femnist.sh```) and replace all ```python``` instances with ```python3```
-Now run:
+To run LEAF, do:
 
     cd /opt/leaf/paper_experiments/ && sudo ./femnist.sh [output directory]
 
 This will run LEAF's sample end-to-end experiment and place the results in the ```[output directory]```.
 
 **NOTE:** The datasets are quite large and you may run out of space in the root file system. To avoid this, 
-if using a filemount, specify the filemount as the output directory. For example, from the ```paper_experiments```
-directory run:
+if using a filemount, specify the filemount as the output directory, e.g.
 
-    sudo ./femnist.sh /mydata
+    cd /opt/leaf/paper_experiments/ && sudo ./femnist.sh /mydata
 
 
 """
