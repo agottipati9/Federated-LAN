@@ -36,7 +36,6 @@ and run leaf from there.
     
 **NOTE:** Training will take a very long time. One way to circumvent this is to decrease the number of epochs and clients per round. For example
 after downloading the dataset, run:
-
     
     cd /mydata/leaf/models && sudo python3 -u main.py -dataset shakespeare -model stacked_lstm --seed 0 --num-rounds 10 --clients-per-round 3 --num-epochs 1 -lr 0.8
 
