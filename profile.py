@@ -19,15 +19,26 @@ Find the LEAF documentation [here](https://leaf.cmu.edu/build/html/index.html).
 LEAF has been installed in ```/opt``` directory.
 To run LEAF, do:
 
-    cd /opt/leaf/paper_experiments/ && sudo ./femnist.sh [output directory]
+    cd /opt/leaf/paper_experiments/ && sudo ./shakespeare.sh [output directory]
 
 This will run LEAF's sample end-to-end experiment and place the results in the ```[output directory]```.
 
 **NOTE:** The datasets are quite large and you may run out of space in the root file system. To avoid this, 
 if using a filemount, specify the filemount as the output directory, e.g.
 
-    cd /opt/leaf/paper_experiments/ && sudo ./femnist.sh /mydata
+    cd /opt/leaf/paper_experiments/ && sudo ./shakespeare.sh /mydata
+    
+**OR** copy the contents of leaf to your file mount with:
 
+    sudo cp -r /opt/leaf /mydata/
+    
+and run leaf from there.
+    
+**NOTE:** Training will take a very long time. One way to circumvent this is to decrease the number of epochs and clients per round. For example
+after downloading the dataset, run:
+
+    
+    cd /mydata/leaf/models && sudo python3 -u main.py -dataset shakespeare -model stacked_lstm --seed 0 --num-rounds 10 --clients-per-round 3 --num-epochs 1 -lr 0.8
 
 """
 
