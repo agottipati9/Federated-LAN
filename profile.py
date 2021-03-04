@@ -28,7 +28,7 @@ if using a filemount, specify the filemount as the output directory, e.g.
 
     cd /opt/leaf/paper_experiments/ && sudo ./shakespeare.sh /mydata
     
-**OR** copy the contents of leaf to your file mount with:
+**OR** copy the contents of the LEAF directory to your file mount with:
 
     sudo cp -r /opt/leaf /mydata/
     
