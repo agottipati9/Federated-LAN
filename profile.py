@@ -13,9 +13,9 @@ You have the option of choosing between CMU's LEAF framework and IBM's enterpris
 specific hardware type and Ubuntu image (default Ubuntu 18.04) for all the nodes in the lan. 
 """
 tourInstructions = """
-**NOTE:** These instructions assume you have opted for the optional file mount on the ```/mydata``` directory.
-
 # IBM Instructions
+
+**NOTE:** These instructions assume you have opted for the optional file mount on the ```/mydata``` directory.
 
 ## Finishing the Install
 To finish installing the IBM environment, follow the following instructions for **ALL** nodes.
@@ -42,11 +42,11 @@ You may also find the documentation [here](https://github.com/IBM/federated-lear
     conda activate tf1
     cd / && jupyter notebook --allow-root --no-browser
 
-Now point your browser at pcXXX.emulab.net:8888/?token=JUPYTER_TOKEN, where pcXXX is the emulab compute node and JUPYTER_TOKEN is the Jupyter authentication token.
+Now point your browser at **pcXXX.emulab.net:8888/?token=JUPYTER_TOKEN**, where **pcXXX** is the emulab compute node and **JUPYTER_TOKEN** is the Jupyter authentication token.
 
-**NOTE:** To utilize the Conda environment, you must be running the bash shell with elevated priviliges i.e. **sudo bash**.
+**NOTES:** To utilize the Conda environment, you must be running the bash shell with elevated privileges i.e. **sudo bash**.
 Find the IBM documentation [here](https://ibmfl-api-docs.mybluemix.net/).
-The IBM-FL and Miniconda have been installed in the ```/mydata``` directory.
+IBM-FL and Miniconda have been installed in the ```/mydata``` directory.
 
 ---
 
