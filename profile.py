@@ -8,12 +8,49 @@ import geni.rspec.emulab as emulab
 import geni.rspec.igext as IG
 
 tourDescription = """
-A simple Federated setup with a single server node and a variable number of client nodes connected in a lan.
-This profile utilizes CMU's LEAF framework. You have the option of choosing between two Ubuntu standard images,
-or just use the default (Ubuntu 18.04). You may also optionally pick the specific hardware type for all the nodes
-in the lan. 
+A simple Federated setup with a single server node and a variable number of client nodes connected in a LAN.
+You have the option of choosing between CMU's LEAF framework and IBM's enterprise Federated framework. You may also optionally pick the 
+specific hardware type and Ubuntu image (default Ubuntu 18.04) for all the nodes in the lan. 
 """
 tourInstructions = """
+**NOTE:** These instructions assume you have opted for the optional file mount on the ```/mydata``` directory.
+
+# IBM Instructions
+
+## Finishing the Install
+To finish installing the IBM environment, follow the following instructions for **ALL** nodes.
+
+To install Miniconda, do:
+
+    sudo /local/repository/bin/install_conda.sh
+    
+After installing Miniconda, please close and reopen your shell to finish the Miniconda setup.
+
+To install IBM-FL, do:
+
+    sudo bash
+    sudo bash -i /local/repository/bin/install_ibmfl.sh
+    
+This will install all dependencies in the **tf1** conda environment.
+    
+## Verify the install
+
+To excute the example code in ```/mydata/federated-learning-lib/Notebooks```, run the following commands.
+
+    sudo bash
+    conda activate tf1
+    cd / && jupyter notebook --allow-root --no-browser
+
+Now point your browser at pcXXX.emulab.net:8888/?token=JUPYTER_TOKEN, where pcXXX is the emulab compute node and JUPYTER_TOKEN is the Jupyter authentication token.
+
+**NOTE:** To utilize the Conda, you must be running the bash shell with elevated priviliges i.e. **sudo bash**.
+Find the IBM documentation [here](https://ibmfl-api-docs.mybluemix.net/).
+The IBM-FL and Conda have been installed in the ```/mydata``` directory.
+
+---
+
+# LEAF Instructions
+
 **NOTE:** Ensure the ***Startup*** column has a status of ***Finished*** prior to using the compute nodes.
 Find the LEAF documentation [here](https://leaf.cmu.edu/build/html/index.html).
 LEAF has been installed in ```/opt``` directory.
@@ -55,6 +92,16 @@ request = pc.makeRequestRSpec()
 pc.defineParameter("nodeCount", "Number of Clients", portal.ParameterType.INTEGER, 0,
                    longDescription="Leave as 0 for just the server. " + 
                    "NOTE: As of now, this is limited to 3 client nodes.")
+
+# Choose your framework.
+frameList = [
+    ('IBM-FL', 'IBM-FL'),
+    ('LEAF', 'LEAF')]
+
+pc.defineParameter("framework", "Select a Framework",
+                   portal.ParameterType.STRING,
+                   frameList[0], frameList,
+                   longDescription="Pick your favorite framework.")
 
 # Pick your OS.
 imageList = [
@@ -154,7 +201,8 @@ for i in range(numClients + 1):
         bs = node.Blockstore(name + "-bs", params.tempFileSystemMount)
         bs.size = "0GB"
         bs.placement = "any"
-    node.addService(pg.Execute(shell="bash", command=GLOBALS.LEAF_INSTALL_SCRIPT))
+    if params.framework == "LEAF":
+        node.addService(pg.Execute(shell="bash", command=GLOBALS.LEAF_INSTALL_SCRIPT))
         
     # Optional Blockstore
     # if params.tempFileSystemSize > 0 or params.tempFileSystemMax:
