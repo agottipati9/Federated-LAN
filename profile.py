@@ -36,6 +36,7 @@ This will install all dependencies in the **tf1** conda environment.
 ## Verify the install
 
 To excute the example code in ```/mydata/federated-learning-lib/Notebooks```, run the following commands.
+You may also find the documentation [here](https://github.com/IBM/federated-learning-lib) helpful as well.
 
     sudo bash
     conda activate tf1
