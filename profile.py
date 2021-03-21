@@ -43,9 +43,9 @@ To excute the example code in ```/mydata/federated-learning-lib/Notebooks```, ru
 
 Now point your browser at pcXXX.emulab.net:8888/?token=JUPYTER_TOKEN, where pcXXX is the emulab compute node and JUPYTER_TOKEN is the Jupyter authentication token.
 
-**NOTE:** To utilize the Conda, you must be running the bash shell with elevated priviliges i.e. **sudo bash**.
+**NOTE:** To utilize the Conda environment, you must be running the bash shell with elevated priviliges i.e. **sudo bash**.
 Find the IBM documentation [here](https://ibmfl-api-docs.mybluemix.net/).
-The IBM-FL and Conda have been installed in the ```/mydata``` directory.
+The IBM-FL and Miniconda have been installed in the ```/mydata``` directory.
 
 ---
 
