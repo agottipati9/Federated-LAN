@@ -9,7 +9,7 @@ import geni.rspec.igext as IG
 
 tourDescription = """
 A simple Federated setup with a single server node and a variable number of client nodes connected in a LAN.
-You have the option of choosing between CMU's LEAF framework and IBM's enterprise Federated framework. You may also optionally pick the 
+This profile utilizes IBM's enterprise Federated framework. You may also optionally pick the 
 specific hardware type and Ubuntu image (default Ubuntu 18.04) for all the nodes in the lan. 
 """
 tourInstructions = """
@@ -39,7 +39,7 @@ To excute the example code in ```/mydata/federated-learning-lib/Notebooks```, ru
 You may also find the tutorials [here](https://github.com/IBM/federated-learning-lib) helpful as well.
 
     sudo bash
-    conda activate tf1
+    conda activate tf2
     cd / && jupyter notebook --allow-root --no-browser
 
 Now point your browser at **pcXXX.emulab.net:8888/?token=JUPYTER_TOKEN**, where **pcXXX** is the emulab compute node and **JUPYTER_TOKEN** is the Jupyter authentication token.
@@ -47,35 +47,6 @@ Now point your browser at **pcXXX.emulab.net:8888/?token=JUPYTER_TOKEN**, where 
 **NOTES:** To utilize the Conda environment, you must be running the bash shell with elevated privileges i.e. **sudo bash**.
 Find the IBM documentation [here](https://ibmfl-api-docs.mybluemix.net/).
 IBM-FL and Miniconda have been installed in the ```/mydata``` directory.
-
----
-
-# LEAF Instructions
-
-**NOTE:** Ensure the ***Startup*** column has a status of ***Finished*** prior to using the compute nodes.
-Find the LEAF documentation [here](https://leaf.cmu.edu/build/html/index.html).
-LEAF has been installed in ```/opt``` directory.
-To run LEAF, do:
-
-    cd /opt/leaf/paper_experiments/ && sudo ./shakespeare.sh [output directory]
-
-This will run LEAF's sample end-to-end experiment and place the results in the ```[output directory]```.
-
-**NOTE:** The datasets are quite large and you may run out of space in the root file system. To avoid this, 
-if using a filemount, specify the filemount as the output directory, e.g.
-
-    cd /opt/leaf/paper_experiments/ && sudo ./shakespeare.sh /mydata
-    
-**OR** copy the contents of the LEAF directory to your file mount with:
-
-    sudo cp -r /opt/leaf /mydata/
-    
-and run leaf from there.
-    
-**NOTE:** Training will take a very long time. One way to circumvent this is to decrease the number of epochs and clients per round. For example
-after downloading the dataset, run:
-    
-    cd /mydata/leaf/models && sudo python3 -u main.py -dataset shakespeare -model stacked_lstm --seed 0 --num-rounds 10 --clients-per-round 3 --num-epochs 1 -lr 0.8
 
 """
 
@@ -96,8 +67,7 @@ pc.defineParameter("nodeCount", "Number of Clients", portal.ParameterType.INTEGE
 
 # Choose your framework.
 frameList = [
-    ('IBM-FL', 'IBM-FL'),
-    ('LEAF', 'LEAF')]
+    ('IBM-FL', 'IBM-FL')]
 
 pc.defineParameter("framework", "Select a Framework",
                    portal.ParameterType.STRING,
@@ -202,8 +172,6 @@ for i in range(numClients + 1):
         bs = node.Blockstore(name + "-bs", params.tempFileSystemMount)
         bs.size = "0GB"
         bs.placement = "any"
-    if params.framework == "LEAF":
-        node.addService(pg.Execute(shell="bash", command=GLOBALS.LEAF_INSTALL_SCRIPT))
         
     # Optional Blockstore
     # if params.tempFileSystemSize > 0 or params.tempFileSystemMax:
