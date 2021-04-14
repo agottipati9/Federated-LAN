@@ -18,7 +18,7 @@ conda create -n tf2 python=3.6 -y
 conda activate tf2
 echo "Created tf2 environment. Installing IBM FL..."
 cd /mydata/federated-learning-lib/federated-learning-lib && pip install ./federated_learning_lib-1.0.4-py3-none-any.whl
-echo "Installed IBM FL. Installing Jupyter Notebook..."
+echo "Installed IBM FL. Installing Tensorflow..."
 conda install tensorflow -y
 echo "Installing Jupyter Notebook..."
 conda install -c conda-forge notebook -y
@@ -27,3 +27,4 @@ echo "Installed Jupyter Notebook"
 echo "Copying notebook and DP Implementation..."
 cp /local/repository/etc/keras_fl_model.py /mydata/conda/envs/tf2/lib/python3.6/site-packages/ibmfl/model/keras_fl_model.py
 cp /local/repository/etc/keras_classifier_aggregator.ipynb /mydata/federated-learning-lib/Notebooks/keras_classifier/keras_classifier_aggregator.ipynb
+echo "Done."
