@@ -171,10 +171,13 @@ class KerasFLModel(FLModel):
             self.model.fit(x, y, batch_size=batch_size, epochs=epochs)
         else:
             print('***********************************USING DP TRAINING*******************************************')
+            x = np.array(x)
+            y = np.array(y)
             optimizer = self.model.optimizer #(learning_rate=lr)
             loss_fn = self.model.loss
-            x_batches = np.array_split(np.array(x), batch_size)
-            y_batches = np.array_split(np.array(y), batch_size)
+            num_batches = y.shape[0] // batch_size
+            x_batches = np.array_split(x, num_batches)
+            y_batches = np.array_split(y, num_batches)
             num_batches = len(y_batches)
             sigma = np.sqrt(2 * np.log(1/delta)) / budget
             for epoch in range(epochs):
