@@ -31,7 +31,7 @@ To install IBM-FL, do:
     sudo bash
     sudo bash -i /local/repository/bin/install_ibmfl.sh
     
-This will install all dependencies in the **tf1** conda environment.
+This will install all dependencies in the **tf2** conda environment.
     
 ## Verify the install
 
