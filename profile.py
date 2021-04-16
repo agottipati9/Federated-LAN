@@ -86,7 +86,7 @@ pc.defineParameter("osImage", "Select OS image",
 
 # Optional physical type for all nodes.
 pc.defineParameter("phystype",  "Optional physical node type",
-                   portal.ParameterType.STRING, "",
+                   portal.ParameterType.STRING, "d430",
                    longDescription="Specify a physical node type (pc3000,d430,d710,etc) " +
                    "instead of letting the resource mapper choose for you.")
 
